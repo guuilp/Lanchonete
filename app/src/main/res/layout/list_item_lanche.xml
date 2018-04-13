@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="8dp"
+    android:layout_marginTop="8dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imagem"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        tools:src="@drawable/ic_launcher_background"
+        app:layout_constraintTop_toTopOf="@+id/titulo"
+        app:layout_constraintBottom_toBottomOf="@+id/ingredientes"/>
+
+    <TextView
+        android:id="@+id/titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="X-Bacon"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/imagem"
+        android:layout_marginStart="8dp"/>
+
+    <TextView
+        android:id="@+id/ingredientes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:text="Bacon, Hamburguer de Carne, Queijo, Pão com Gergelim, Pão com Gergelim, Pão com Gergelim, Pão com Gergelim"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/titulo"
+        app:layout_constraintLeft_toRightOf="@+id/imagem"
+        app:layout_constraintRight_toLeftOf="@+id/preco"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="2dp"/>
+
+    <TextView
+        android:id="@+id/preco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="R$ 20,50"
+        android:textSize="16sp"
+        android:textColor="@color/darkGreen"
+        android:textStyle="bold"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/titulo"
+        app:layout_constraintBottom_toBottomOf="@+id/ingredientes"/>
+
+</android.support.constraint.ConstraintLayout>

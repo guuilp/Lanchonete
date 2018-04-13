@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Lanchonete</string>
+    <string name="empty_state_promocao">Não há nenhuma promoção</string>
+    <string name="empty_state_image_description">Rosto triste</string>
+    <string name="empty_state_carrinho">Não há nada no seu carrinho</string>
+    <string name="description_imagem_lanche">Foto do lanche</string>
+</resources>
