@@ -25,9 +25,7 @@ class PromocoesFragment : Fragment(), PromocoesContract.View {
     }
 
     override fun showPromocoes(promocoes: List<Promocao>) {
-        rvListaPromocao.adapter = PromocoesAdapter(promocoes, context){ lanche, position ->
-            toast("Iniciar activity com o lanche: ${lanche.name}")
-        }
+        rvListaPromocao.adapter = PromocoesAdapter(promocoes, context)
     }
 
     override fun showLoading(active: Boolean) {

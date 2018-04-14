@@ -11,16 +11,12 @@ import kotlinx.android.synthetic.main.list_item_promocao.view.*
 
 class PromocoesAdapter(
         private val promocoes: List<Promocao>,
-        private val context: Context?,
-        private var onItemClickListener: (promocao: Promocao, position: Int) -> Unit) : RecyclerView.Adapter<PromocoesAdapter.ViewHolder>(){
+        private val context: Context?) : RecyclerView.Adapter<PromocoesAdapter.ViewHolder>(){
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val promocao = promocoes[position]
         holder.let {
             it.bindView(promocao)
-            it.itemView.setOnClickListener {
-                onItemClickListener(promocao, position)
-            }
         }
     }
 
