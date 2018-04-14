@@ -4,4 +4,8 @@
     <string name="empty_state_image_description">Rosto triste</string>
     <string name="empty_state_carrinho">Não há nada no seu carrinho</string>
     <string name="description_imagem_lanche">Foto do lanche</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>
