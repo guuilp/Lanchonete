@@ -9,7 +9,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class LanchoneteRemoteDataSource : LanchoneteDataSource{
+object LanchoneteRemoteDataSource : LanchoneteDataSource{
 
     override fun listaDeLanches(callback: LanchoneteDataSource.ListaDeLanchesCallback) {
         val call = RetrofitInitializer().lanchoneteService().listaDeLanches()
