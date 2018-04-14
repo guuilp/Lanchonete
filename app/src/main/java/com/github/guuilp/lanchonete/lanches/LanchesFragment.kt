@@ -6,9 +6,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.github.guuilp.lanchonete.R
-import com.github.guuilp.lanchonete.data.Ingrediente
 import com.github.guuilp.lanchonete.data.Lanche
 import kotlinx.android.synthetic.main.fragment_lista_lanche.*
 import org.jetbrains.anko.support.v4.toast

@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.github.guuilp.lanchonete.R
-import com.github.guuilp.lanchonete.data.Ingrediente
 import com.github.guuilp.lanchonete.data.Lanche
 import kotlinx.android.synthetic.main.list_item_lanche.view.*
 
