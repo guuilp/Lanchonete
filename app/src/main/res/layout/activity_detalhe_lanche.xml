@@ -17,7 +17,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/ic_launcher_background"
+            tools:src="@drawable/ic_launcher_background"
             android:scaleType="centerCrop"
             android:contentDescription="@string/description_imagem_lanche" />
 

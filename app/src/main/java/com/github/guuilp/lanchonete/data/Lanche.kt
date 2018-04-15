@@ -6,5 +6,5 @@ data class Lanche(
 	var priceFormated: String? = null,
 	val ingredients: List<Int>,
 	var ingredientsString: String? = null,
-	val id: Int? = null
+	val id: Int
 )
