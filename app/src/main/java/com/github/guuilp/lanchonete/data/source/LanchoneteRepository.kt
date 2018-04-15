@@ -120,7 +120,7 @@ class LanchoneteRepository(val lanchoneteRemoteDataSource: LanchoneteDataSource)
         if(quantidadeDeQueijo.size > 2) {
             val queijo = listaDeIngredientes.single { it.id == 5 }
 
-            val qtdQueijoNaoPagara = quantidadeDeCarne.size.div(3).toInt()
+            val qtdQueijoNaoPagara = quantidadeDeQueijo.size.div(3).toInt()
 
             precoDoLanche -= qtdQueijoNaoPagara * queijo.price
         }
