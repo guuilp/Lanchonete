@@ -10,8 +10,6 @@ interface LanchesContract{
 
         fun showLanches(lanches: List<Lanche>)
 
-        fun showLoading(active: Boolean)
-
         fun showError()
     }
 

@@ -1,6 +1,7 @@
 package com.github.guuilp.lanchonete.data.source
 
 import com.github.guuilp.lanchonete.data.Ingrediente
+import com.github.guuilp.lanchonete.data.ItemPedido
 import com.github.guuilp.lanchonete.data.Lanche
 
 
@@ -36,6 +37,24 @@ class LanchoneteRepository(val lanchoneteRemoteDataSource: LanchoneteDataSource)
 
     override fun adicionarLanchPersonalizadoeAoPedido(idLanche: Int, idIngredientes: List<Int>, callback: LanchoneteDataSource.AdicionarLancheAoPedidoCallback) {
         lanchoneteRemoteDataSource.adicionarLanchPersonalizadoeAoPedido(idLanche, idIngredientes, callback)
+    }
+
+    fun converterListaDePedidosEmListaDeLanche(listaPedido: List<ItemPedido>, listaCompletaDeLanches: List<Lanche>): List<Lanche>{
+        val listaDeLancheDoPedido = mutableListOf<Lanche>()
+
+        listaPedido.forEach { itemPedido ->
+            listaDeLancheDoPedido.add(listaCompletaDeLanches.single { it.id == itemPedido.id })
+        }
+
+        return listaDeLancheDoPedido
+    }
+
+    fun calcularPrecoDoPedido(lanchesDoPedido: List<Lanche>): String{
+        val precoFinal = lanchesDoPedido.sumByDouble {
+            it.price
+        }
+
+        return String.format("%.2f", precoFinal)
     }
 
     fun atualizaListaComPrecoEIngrediente(listaDeLanches: List<Lanche>, listaDeIngredientes: List<Ingrediente>): List<Lanche>{

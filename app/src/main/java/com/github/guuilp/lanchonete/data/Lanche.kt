@@ -1,5 +1,9 @@
 package com.github.guuilp.lanchonete.data
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Lanche(
 	val image: String? = null,
 	val name: String? = null,
@@ -8,4 +12,4 @@ data class Lanche(
 	val ingredients: List<Int>,
 	var ingredientsString: String? = null,
 	val id: Int
-)
+): Parcelable

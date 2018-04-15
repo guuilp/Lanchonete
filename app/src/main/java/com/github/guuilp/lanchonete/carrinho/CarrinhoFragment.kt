@@ -11,7 +11,6 @@ import com.github.guuilp.lanchonete.data.Lanche
 import com.github.guuilp.lanchonete.detalheLanche.DetalheLancheActivity
 import com.github.guuilp.lanchonete.lanches.LanchesAdapter
 import kotlinx.android.synthetic.main.fragment_carrinho.*
-import kotlinx.android.synthetic.main.fragment_lista_lanche.*
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 
@@ -36,16 +35,12 @@ class CarrinhoFragment : Fragment(), CarrinhoContract.View {
 
     override lateinit var presenter: CarrinhoContract.Presenter
 
-    override fun showLanches(lanches: List<Lanche>, precoFinal: Double) {
+    override fun showLanches(lanches: List<Lanche>, precoFinal: String) {
         rvListaLanchesPedido.adapter = LanchesAdapter(lanches, context){ lanche, position ->
             startActivity<DetalheLancheActivity>("id" to lanche.id)
         }
 
-        finalizar.text = "FINALIZAR - R$ " + String.format("%.2f", precoFinal)
-    }
-
-    override fun showLoading(active: Boolean) {
-
+        finalizar.text = "FINALIZAR - R$ $precoFinal"
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

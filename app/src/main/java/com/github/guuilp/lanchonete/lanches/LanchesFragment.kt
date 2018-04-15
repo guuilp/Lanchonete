@@ -29,10 +29,6 @@ class LanchesFragment : Fragment(), LanchesContract.View {
         }
     }
 
-    override fun showLoading(active: Boolean) {
-
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_lista_lanche, container, false)
@@ -43,8 +39,8 @@ class LanchesFragment : Fragment(), LanchesContract.View {
         fun newInstance() = LanchesFragment()
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onResume() {
+        super.onResume()
         presenter.start()
     }
 }

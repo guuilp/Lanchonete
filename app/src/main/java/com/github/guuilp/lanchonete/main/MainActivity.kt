@@ -1,11 +1,14 @@
-package com.github.guuilp.lanchonete
+package com.github.guuilp.lanchonete.main
 
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
+import com.github.guuilp.lanchonete.R
 import com.github.guuilp.lanchonete.carrinho.CarrinhoFragment
 import com.github.guuilp.lanchonete.carrinho.CarrinhoPresenter
+import com.github.guuilp.lanchonete.data.Ingrediente
+import com.github.guuilp.lanchonete.data.Lanche
 import com.github.guuilp.lanchonete.data.source.LanchoneteRepository
 import com.github.guuilp.lanchonete.data.source.remote.LanchoneteRemoteDataSource
 import com.github.guuilp.lanchonete.lanches.LanchesFragment
@@ -16,7 +19,9 @@ import com.github.guuilp.lanchonete.util.ViewPagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.toast
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainContract.View {
+
+    override lateinit var presenter: MainContract.Presenter
 
     private lateinit var lancheFragment: LanchesFragment
     private lateinit var promocoesFragment: PromocoesFragment
@@ -45,24 +50,36 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-        setupViewPager(viewpager)
+        MainPresenter(LanchoneteRepository.getInstance(LanchoneteRemoteDataSource), this)
+
+        presenter.start()
     }
 
-    private fun setupViewPager(viewPager: ViewPager){
+    private fun setupViewPager(viewPager: ViewPager, listaDeIngredientes: List<Ingrediente>, listaDeLanches: List<Lanche>){
         val adapter = ViewPagerAdapter(supportFragmentManager)
         lancheFragment = LanchesFragment.newInstance()
         promocoesFragment = PromocoesFragment.newInstance()
         carrinhoFragment = CarrinhoFragment.newInstance()
-        adapter.addFragment(lancheFragment)
-        adapter.addFragment(promocoesFragment)
-        adapter.addFragment(carrinhoFragment)
-        viewPager.adapter = adapter
-        viewpager.offscreenPageLimit = 2
 
         val repository = LanchoneteRepository.getInstance(LanchoneteRemoteDataSource)
 
-        LanchesPresenter(repository, lancheFragment)
+        LanchesPresenter(listaDeLanches, listaDeIngredientes, lancheFragment)
         PromocoesPresenter(repository, promocoesFragment)
-        CarrinhoPresenter(repository, carrinhoFragment)
+        CarrinhoPresenter(listaDeLanches, listaDeIngredientes, repository, carrinhoFragment)
+
+        adapter.addFragment(lancheFragment)
+        adapter.addFragment(promocoesFragment)
+        adapter.addFragment(carrinhoFragment)
+
+        viewPager.adapter = adapter
+        viewpager.offscreenPageLimit = 2
+    }
+
+    override fun getLanchesEIngredientes(listaDeIngredientes: List<Ingrediente>, listaDeLanches: List<Lanche>) {
+        setupViewPager(viewpager, listaDeIngredientes, listaDeLanches)
+    }
+
+    override fun showError() {
+        toast("Erro")
     }
 }

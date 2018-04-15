@@ -1,11 +1,11 @@
 package com.github.guuilp.lanchonete.util
 
 import android.content.Context
-import android.view.animation.DecelerateInterpolator
-import android.widget.Scroller
 import android.support.v4.view.ViewPager
 import android.util.AttributeSet
 import android.view.MotionEvent
+import android.view.animation.DecelerateInterpolator
+import android.widget.Scroller
 
 
 class NonSwipeableViewPager : ViewPager {

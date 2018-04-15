@@ -1,18 +1,15 @@
-package com.github.guuilp.lanchonete.carrinho
+package com.github.guuilp.lanchonete.main
 
 import com.github.guuilp.lanchonete.BasePresenter
 import com.github.guuilp.lanchonete.BaseView
+import com.github.guuilp.lanchonete.data.Ingrediente
 import com.github.guuilp.lanchonete.data.Lanche
 
-interface CarrinhoContract{
+interface MainContract{
     interface View : BaseView<Presenter>{
-        val isActive: Boolean
-
-        fun showLanches(lanches: List<Lanche>, precoFinal: String)
+        fun getLanchesEIngredientes(listaDeIngredientes: List<Ingrediente>, listaDeLanches: List<Lanche>)
 
         fun showError()
-
-        fun showEmptyState(show: Boolean)
     }
 
     interface Presenter : BasePresenter

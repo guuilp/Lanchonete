@@ -2,10 +2,9 @@ package com.github.guuilp.lanchonete.lanches
 
 import com.github.guuilp.lanchonete.data.Ingrediente
 import com.github.guuilp.lanchonete.data.Lanche
-import com.github.guuilp.lanchonete.data.source.LanchoneteDataSource
-import com.github.guuilp.lanchonete.data.source.LanchoneteRepository
 
-class LanchesPresenter(val lanchoneteRepository: LanchoneteRepository,
+class LanchesPresenter(val listaDeLanches: List<Lanche>,
+                       val listaDeIngrediente: List<Ingrediente>,
                        val lanchesView: LanchesContract.View) : LanchesContract.Presenter{
 
     init {
@@ -13,30 +12,10 @@ class LanchesPresenter(val lanchoneteRepository: LanchoneteRepository,
     }
 
     override fun start() {
-        loadIngredientesELanches()
+        loadLanches()
     }
 
-    fun loadIngredientesELanches(){
-        lanchoneteRepository.listaDeIngredientes(object: LanchoneteDataSource.ListaDeIngredientesCallback{
-            override fun onListaDeIngredientesSuccess(listaDeIngredientes: List<Ingrediente>) {
-                loadLanches(listaDeIngredientes)
-            }
-
-            override fun onListaDeIngredientesError() {
-                lanchesView.showError()
-            }
-        })
-    }
-
-    fun loadLanches(listaDeIngredientes: List<Ingrediente>){
-        lanchoneteRepository.listaDeLanches(object: LanchoneteDataSource.ListaDeLanchesCallback{
-            override fun onListaDeLanchesSuccess(listaDeLanches: List<Lanche>) {
-                lanchesView.showLanches(lanchoneteRepository.atualizaListaComPrecoEIngrediente(listaDeLanches, listaDeIngredientes))
-            }
-
-            override fun onListaDeLanchesError() {
-                lanchesView.showError()
-            }
-        })
+    fun loadLanches(){
+        lanchesView.showLanches(listaDeLanches)
     }
 }

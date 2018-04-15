@@ -8,8 +8,6 @@ interface DetalheLancheContract{
     interface View : BaseView<Presenter>{
         fun showLanche(lanche: Lanche)
 
-        fun showLoading(active: Boolean)
-
         fun showToast(text: String)
     }
 

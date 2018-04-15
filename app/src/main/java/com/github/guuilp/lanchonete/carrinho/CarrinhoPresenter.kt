@@ -6,7 +6,9 @@ import com.github.guuilp.lanchonete.data.Lanche
 import com.github.guuilp.lanchonete.data.source.LanchoneteDataSource
 import com.github.guuilp.lanchonete.data.source.LanchoneteRepository
 
-class CarrinhoPresenter(val lanchoneteRepository: LanchoneteRepository,
+class CarrinhoPresenter(val listaDeLanches: List<Lanche>,
+                        val listaDeIngrediente: List<Ingrediente>,
+                        val lanchoneteRepository: LanchoneteRepository,
                         val lanchesView: CarrinhoContract.View) : CarrinhoContract.Presenter{
 
     init {
@@ -14,23 +16,18 @@ class CarrinhoPresenter(val lanchoneteRepository: LanchoneteRepository,
     }
 
     override fun start() {
-        loadIngredientesELanches()
+        loadItemsDoCarrinho()
     }
 
-    fun loadItemsDoCarrinho(listaDeLanches: List<Lanche>){
+    fun loadItemsDoCarrinho(){
         lanchoneteRepository.listaPedido(object : LanchoneteDataSource.ListaPedidoCallback{
             override fun onListaPedidoSuccess(listaPedido: List<ItemPedido>) {
 
                 if(listaPedido.isNotEmpty()) {
-                    val listaDeLancheDoPedido = mutableListOf<Lanche>()
 
-                    listaPedido.forEach { itemPedido ->
-                        listaDeLancheDoPedido.add(listaDeLanches.single { it.id == itemPedido.id })
-                    }
+                    val listaDeLancheDoPedido = lanchoneteRepository.converterListaDePedidosEmListaDeLanche(listaPedido, listaDeLanches)
 
-                    val precoFinal = listaDeLancheDoPedido.sumByDouble {
-                        it.price
-                    }
+                    val precoFinal = lanchoneteRepository.calcularPrecoDoPedido(listaDeLancheDoPedido)
 
                     lanchesView.showLanches(listaDeLancheDoPedido, precoFinal)
 
@@ -44,30 +41,6 @@ class CarrinhoPresenter(val lanchoneteRepository: LanchoneteRepository,
                 lanchesView.showError()
             }
 
-        })
-    }
-
-    fun loadIngredientesELanches(){
-        lanchoneteRepository.listaDeIngredientes(object: LanchoneteDataSource.ListaDeIngredientesCallback{
-            override fun onListaDeIngredientesSuccess(listaDeIngredientes: List<Ingrediente>) {
-                loadLanches(listaDeIngredientes)
-            }
-
-            override fun onListaDeIngredientesError() {
-                lanchesView.showError()
-            }
-        })
-    }
-
-    fun loadLanches(listaDeIngredientes: List<Ingrediente>){
-        lanchoneteRepository.listaDeLanches(object: LanchoneteDataSource.ListaDeLanchesCallback{
-            override fun onListaDeLanchesSuccess(listaDeLanches: List<Lanche>) {
-                loadItemsDoCarrinho(lanchoneteRepository.atualizaListaComPrecoEIngrediente(listaDeLanches, listaDeIngredientes))
-            }
-
-            override fun onListaDeLanchesError() {
-                lanchesView.showError()
-            }
         })
     }
 }

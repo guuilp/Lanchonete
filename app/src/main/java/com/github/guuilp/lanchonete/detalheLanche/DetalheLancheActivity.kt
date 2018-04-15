@@ -9,7 +9,6 @@ import com.github.guuilp.lanchonete.data.source.LanchoneteRepository
 import com.github.guuilp.lanchonete.data.source.remote.LanchoneteRemoteDataSource
 import kotlinx.android.synthetic.main.activity_detalhe_lanche.*
 import org.jetbrains.anko.design.snackbar
-import org.jetbrains.anko.toast
 
 class DetalheLancheActivity: AppCompatActivity(), DetalheLancheContract.View  {
 
@@ -36,10 +35,6 @@ class DetalheLancheActivity: AppCompatActivity(), DetalheLancheContract.View  {
         titulo.text = lanche.name
         ingredientes.text = lanche.ingredientsString
         preco.text = lanche.priceFormated
-    }
-
-    override fun showLoading(active: Boolean) {
-        toast("Loading")
     }
 
     override fun showToast(text: String) {
