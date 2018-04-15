@@ -10,7 +10,7 @@ interface CarrinhoContract{
 
         fun showLanches(lanches: List<Lanche>, precoFinal: String)
 
-        fun showError()
+        fun showAPIError()
 
         fun showEmptyState(show: Boolean)
     }

@@ -8,7 +8,10 @@ interface DetalheLancheContract{
     interface View : BaseView<Presenter>{
         fun showLanche(lanche: Lanche)
 
-        fun showToast(text: String)
+        fun showAPIIngredienteError()
+        fun showAPILancheError()
+        fun showAPIAdicionarPedidoError()
+        fun showProdutoAdicionadoMessage()
     }
 
     interface Presenter : BasePresenter{

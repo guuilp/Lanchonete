@@ -23,7 +23,7 @@ class MainPresenter(val lanchoneteRepository: LanchoneteRepository,
             }
 
             override fun onListaDeIngredientesError() {
-                mainView.showError()
+                mainView.showAPIIngredienteError()
             }
         })
     }
@@ -37,7 +37,7 @@ class MainPresenter(val lanchoneteRepository: LanchoneteRepository,
             }
 
             override fun onListaDeLanchesError() {
-                mainView.showError()
+                mainView.showAPILancheError()
             }
         })
     }

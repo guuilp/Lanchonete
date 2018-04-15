@@ -4,11 +4,13 @@
     <string name="empty_state_image_description">Rosto triste</string>
     <string name="empty_state_carrinho">Não há nada no seu carrinho</string>
     <string name="description_imagem_lanche">Foto do lanche</string>
-    <string name="title_activity_main2">Main2Activity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="erro_api_carrinho">Ocorreu um erro ao buscar os itens do seu carrinho</string>
+    <string name="footer_carrinho">FINALIZAR - R$ %1$s</string>
+    <string name="erro_api_ingrediente">Ocorreu um erro ao buscar os ingredientes do lanche</string>
+    <string name="erro_api_lanche">Ocorreu um erro os detalhes do lanche</string>
+    <string name="message_produto_adicionado_carrinho">Produto adicionado ao carrinho com sucesso!</string>
+    <string name="erro_api_adicionar_carrinho">Ocorreu um erro ao adicionar o produto ao carrinho</string>
+    <string name="erro_api_promocoes">Ocorreu um erro ao buscar as promoções</string>
+    <string name="finalizar_pedido">Obrigado por testar o aplicativo! \n-Guilherme Lima Pereira</string>
+    <string name="feature_nao_implementada">Funcionalidade de personalizar o lanche não implementada =(</string>
 </resources>

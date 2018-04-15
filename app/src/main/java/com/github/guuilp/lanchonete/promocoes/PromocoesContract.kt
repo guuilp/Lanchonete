@@ -10,9 +10,7 @@ interface PromocoesContract{
 
         fun showPromocoes(promocoes: List<Promocao>)
 
-        fun showLoading(active: Boolean)
-
-        fun showError()
+        fun showAPIError()
 
         fun showEmptyState()
     }

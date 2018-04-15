@@ -28,17 +28,13 @@ class PromocoesFragment : Fragment(), PromocoesContract.View {
         rvListaPromocao.adapter = PromocoesAdapter(promocoes, context)
     }
 
-    override fun showLoading(active: Boolean) {
-
-    }
-
     override fun showEmptyState() {
         groupEmptyState.visibility = View.VISIBLE
         rvListaPromocao.visibility = View.GONE
     }
 
-    override fun showError() {
-        toast("Deu erro")
+    override fun showAPIError() {
+        toast(getString(R.string.erro_api_promocoes))
     }
 
     companion object {

@@ -79,7 +79,11 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         setupViewPager(viewpager, listaDeIngredientes, listaDeLanches)
     }
 
-    override fun showError() {
-        toast("Erro")
+    override fun showAPIIngredienteError() {
+        toast(getString(R.string.erro_api_ingrediente))
+    }
+
+    override fun showAPILancheError() {
+        toast(getString(R.string.erro_api_lanche))
     }
 }

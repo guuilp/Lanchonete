@@ -21,13 +21,12 @@ class DetalheLanchePresenter(val idLanche: Int,
     override fun adicionarLancheAoPedido(idLanche: Int) {
         lanchoneteRepository.adicionarLancheAoPedido(idLanche, object: LanchoneteDataSource.AdicionarLancheAoPedidoCallback{
             override fun onAdicionarLancheAoPedidoSuccess(itemPedido: ItemPedido) {
-                detalheLancheView.showToast("Produto adicionado ao carrinho com sucesso!")
+                detalheLancheView.showProdutoAdicionadoMessage()
             }
 
             override fun onAdicionarLancheAoPedidoError() {
-                detalheLancheView.showToast("Deu erro")
+                detalheLancheView.showAPIAdicionarPedidoError()
             }
-
         })
     }
 
@@ -38,7 +37,7 @@ class DetalheLanchePresenter(val idLanche: Int,
             }
 
             override fun onListaDeIngredientesError() {
-                detalheLancheView.showToast("Deu erro")
+                detalheLancheView.showAPIIngredienteError()
             }
         })
     }
@@ -50,7 +49,7 @@ class DetalheLanchePresenter(val idLanche: Int,
             }
 
             override fun onLancheError() {
-                detalheLancheView.showToast("Deu erro")
+                detalheLancheView.showAPILancheError()
             }
         })
     }

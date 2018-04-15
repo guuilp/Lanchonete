@@ -18,12 +18,20 @@ class PromocoesPresenter(val lanchoneteRepository: LanchoneteRepository,
     fun loadPromocoes(){
         lanchoneteRepository.listaPromocoes(object: LanchoneteDataSource.ListaPromocoesCallback{
             override fun onListaPromocoesSuccess(listaPromocoes: List<Promocao>) {
+                if (!promocoesView.isActive) {
+                    return
+                }
+
                 if(listaPromocoes.isNotEmpty()) promocoesView.showPromocoes(listaPromocoes)
                 else promocoesView.showEmptyState()
             }
 
             override fun onListaPromocoesError() {
-                promocoesView.showError()
+                if (!promocoesView.isActive) {
+                    return
+                }
+
+                promocoesView.showAPIError()
             }
         })
     }

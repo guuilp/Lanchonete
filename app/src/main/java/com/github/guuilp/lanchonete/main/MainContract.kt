@@ -9,7 +9,8 @@ interface MainContract{
     interface View : BaseView<Presenter>{
         fun getLanchesEIngredientes(listaDeIngredientes: List<Ingrediente>, listaDeLanches: List<Lanche>)
 
-        fun showError()
+        fun showAPIIngredienteError()
+        fun showAPILancheError()
     }
 
     interface Presenter : BasePresenter

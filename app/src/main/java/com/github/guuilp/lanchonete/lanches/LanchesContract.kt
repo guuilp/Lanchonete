@@ -10,7 +10,7 @@ interface LanchesContract{
 
         fun showLanches(lanches: List<Lanche>)
 
-        fun showError()
+        fun showAPIError()
     }
 
     interface Presenter : BasePresenter

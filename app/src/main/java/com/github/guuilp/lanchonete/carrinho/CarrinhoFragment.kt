@@ -11,12 +11,28 @@ import com.github.guuilp.lanchonete.data.Lanche
 import com.github.guuilp.lanchonete.detalheLanche.DetalheLancheActivity
 import com.github.guuilp.lanchonete.lanches.LanchesAdapter
 import kotlinx.android.synthetic.main.fragment_carrinho.*
+import org.jetbrains.anko.support.v4.longToast
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 
 class CarrinhoFragment : Fragment(), CarrinhoContract.View {
-    override fun showEmptyState(show: Boolean) {
 
+    override val isActive: Boolean
+        get() = isAdded
+
+    override lateinit var presenter: CarrinhoContract.Presenter
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_carrinho, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        finalizar.setOnClickListener { longToast(getString(R.string.finalizar_pedido)) }
+    }
+
+    override fun showEmptyState(show: Boolean) {
         if(show) {
             groupEmptyState.visibility = View.VISIBLE
             conteudo.visibility = View.GONE
@@ -26,26 +42,13 @@ class CarrinhoFragment : Fragment(), CarrinhoContract.View {
         }
     }
 
-    override fun showError() {
-        toast("Deu erro")
-    }
-
-    override val isActive: Boolean
-        get() = isAdded
-
-    override lateinit var presenter: CarrinhoContract.Presenter
-
     override fun showLanches(lanches: List<Lanche>, precoFinal: String) {
-        rvListaLanchesPedido.adapter = LanchesAdapter(lanches, context){ lanche, position ->
-            startActivity<DetalheLancheActivity>("id" to lanche.id)
-        }
-
-        finalizar.text = "FINALIZAR - R$ $precoFinal"
+        rvListaLanchesPedido.adapter = LanchesAdapter(lanches, context){ _, _ -> }
+        finalizar.text = getString(R.string.footer_carrinho, precoFinal)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_carrinho, container, false)
+    override fun showAPIError() {
+        toast(getString(R.string.erro_api_carrinho))
     }
 
     companion object {

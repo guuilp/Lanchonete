@@ -9,6 +9,7 @@ import com.github.guuilp.lanchonete.data.source.LanchoneteRepository
 import com.github.guuilp.lanchonete.data.source.remote.LanchoneteRemoteDataSource
 import kotlinx.android.synthetic.main.activity_detalhe_lanche.*
 import org.jetbrains.anko.design.snackbar
+import org.jetbrains.anko.longToast
 
 class DetalheLancheActivity: AppCompatActivity(), DetalheLancheContract.View  {
 
@@ -25,6 +26,10 @@ class DetalheLancheActivity: AppCompatActivity(), DetalheLancheContract.View  {
         adicionarCarrinho.setOnClickListener {
             presenter.adicionarLancheAoPedido(id)
         }
+
+        personalizarLanche.setOnClickListener {
+            longToast(getString(R.string.feature_nao_implementada))
+        }
     }
 
     override fun showLanche(lanche: Lanche) {
@@ -37,8 +42,20 @@ class DetalheLancheActivity: AppCompatActivity(), DetalheLancheContract.View  {
         preco.text = lanche.priceFormated
     }
 
-    override fun showToast(text: String) {
-        snackbar(rootCoordinator, text)
+    override fun showAPIIngredienteError() {
+        snackbar(rootCoordinator, getString(R.string.erro_api_ingrediente))
+    }
+
+    override fun showAPILancheError() {
+        snackbar(rootCoordinator, getString(R.string.erro_api_lanche))
+    }
+
+    override fun showAPIAdicionarPedidoError() {
+        snackbar(rootCoordinator, getString(R.string.erro_api_adicionar_carrinho))
+    }
+
+    override fun showProdutoAdicionadoMessage() {
+        snackbar(rootCoordinator, getString(R.string.message_produto_adicionado_carrinho))
     }
 
     override fun onResume() {

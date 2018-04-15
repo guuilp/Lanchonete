@@ -14,14 +14,16 @@ import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 
 class LanchesFragment : Fragment(), LanchesContract.View {
-    override fun showError() {
-        toast("Deu erro")
-    }
 
     override val isActive: Boolean
         get() = isAdded
 
     override lateinit var presenter: LanchesContract.Presenter
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_lista_lanche, container, false)
+    }
 
     override fun showLanches(lanches: List<Lanche>) {
         rvListaLanches.adapter = LanchesAdapter(lanches, context){ lanche, position ->
@@ -29,9 +31,8 @@ class LanchesFragment : Fragment(), LanchesContract.View {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_lista_lanche, container, false)
+    override fun showAPIError() {
+        toast(getString(R.string.erro_api_lanche))
     }
 
     companion object {

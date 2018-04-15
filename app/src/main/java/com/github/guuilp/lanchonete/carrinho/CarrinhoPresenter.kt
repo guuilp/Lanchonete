@@ -1,5 +1,6 @@
 package com.github.guuilp.lanchonete.carrinho
 
+import com.github.guuilp.lanchonete.R
 import com.github.guuilp.lanchonete.data.Ingrediente
 import com.github.guuilp.lanchonete.data.ItemPedido
 import com.github.guuilp.lanchonete.data.Lanche
@@ -29,16 +30,24 @@ class CarrinhoPresenter(val listaDeLanches: List<Lanche>,
 
                     val precoFinal = lanchoneteRepository.calcularPrecoDoPedido(listaDeLancheDoPedido)
 
+                    if (!lanchesView.isActive) {
+                        return
+                    }
+
                     lanchesView.showLanches(listaDeLancheDoPedido, precoFinal)
 
                     lanchesView.showEmptyState(false)
                 } else {
+                    if (!lanchesView.isActive) {
+                        return
+                    }
+
                     lanchesView.showEmptyState(true)
                 }
             }
 
             override fun onListaPedidoError() {
-                lanchesView.showError()
+                lanchesView.showAPIError()
             }
 
         })

@@ -16,6 +16,10 @@ class LanchesPresenter(val listaDeLanches: List<Lanche>,
     }
 
     fun loadLanches(){
+        if (!lanchesView.isActive) {
+            return
+        }
+
         lanchesView.showLanches(listaDeLanches)
     }
 }
