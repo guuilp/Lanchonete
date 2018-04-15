@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
+import com.github.guuilp.lanchonete.carrinho.CarrinhoFragment
+import com.github.guuilp.lanchonete.carrinho.CarrinhoPresenter
 import com.github.guuilp.lanchonete.data.source.LanchoneteRepository
 import com.github.guuilp.lanchonete.data.source.remote.LanchoneteRemoteDataSource
 import com.github.guuilp.lanchonete.lanches.LanchesFragment
@@ -18,6 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var lancheFragment: LanchesFragment
     private lateinit var promocoesFragment: PromocoesFragment
+    private lateinit var carrinhoFragment: CarrinhoFragment
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
@@ -30,7 +33,7 @@ class MainActivity : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.carrinho -> {
-                toast("Terceira aba")
+                viewpager.currentItem = 2
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -49,13 +52,17 @@ class MainActivity : AppCompatActivity() {
         val adapter = ViewPagerAdapter(supportFragmentManager)
         lancheFragment = LanchesFragment.newInstance()
         promocoesFragment = PromocoesFragment.newInstance()
+        carrinhoFragment = CarrinhoFragment.newInstance()
         adapter.addFragment(lancheFragment)
         adapter.addFragment(promocoesFragment)
+        adapter.addFragment(carrinhoFragment)
         viewPager.adapter = adapter
+        viewpager.offscreenPageLimit = 2
 
-        val repository = LanchoneteRepository(LanchoneteRemoteDataSource)
+        val repository = LanchoneteRepository.getInstance(LanchoneteRemoteDataSource)
 
         LanchesPresenter(repository, lancheFragment)
         PromocoesPresenter(repository, promocoesFragment)
+        CarrinhoPresenter(repository, carrinhoFragment)
     }
 }

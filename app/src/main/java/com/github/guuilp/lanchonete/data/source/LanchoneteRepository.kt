@@ -43,7 +43,11 @@ class LanchoneteRepository(val lanchoneteRemoteDataSource: LanchoneteDataSource)
         listaDeLanches.forEach { lanche ->
             val listaIngredientesFiltrada = filtrarListaDeIngredientes(lanche, listaDeIngredientes)
 
-            lanche.priceFormated = "R$ " + String.format("%.2f", calcularPrecoDoLanche(lanche, listaDeIngredientes))
+            val preco = calcularPrecoDoLanche(lanche, listaDeIngredientes)
+
+            lanche.price = preco
+
+            lanche.priceFormated = "R$ " + String.format("%.2f", preco)
 
             lanche.ingredientsString = listaIngredientesFiltrada.joinToString(", ") {
                 it.name.toString()
@@ -57,7 +61,11 @@ class LanchoneteRepository(val lanchoneteRemoteDataSource: LanchoneteDataSource)
 
         val listaIngredientesFiltrada = filtrarListaDeIngredientes(lanche, listaDeIngredientes)
 
-        lanche.priceFormated = "R$ " + String.format("%.2f", calcularPrecoDoLanche(lanche, listaDeIngredientes))
+        val preco = calcularPrecoDoLanche(lanche, listaDeIngredientes)
+
+        lanche.price = preco
+
+        lanche.priceFormated = "R$ " + String.format("%.2f", preco)
 
         lanche.ingredientsString = listaIngredientesFiltrada.joinToString(", ") {
             it.name.toString()
@@ -111,6 +119,33 @@ class LanchoneteRepository(val lanchoneteRemoteDataSource: LanchoneteDataSource)
         }
 
         return listaIngredientesFiltrada
+    }
+
+    companion object {
+
+        private var INSTANCE: LanchoneteRepository? = null
+
+        /**
+         * Returns the single instance of this class, creating it if necessary.
+
+         * @param tasksRemoteDataSource the backend data source
+         * *
+         * @param tasksLocalDataSource  the device storage data source
+         * *
+         * @return the [TasksRepository] instance
+         */
+        @JvmStatic fun getInstance(tasksRemoteDataSource: LanchoneteDataSource): LanchoneteRepository {
+            return INSTANCE ?: LanchoneteRepository(tasksRemoteDataSource)
+                    .apply { INSTANCE = this }
+        }
+
+        /**
+         * Used to force [getInstance] to create a new instance
+         * next time it's called.
+         */
+        @JvmStatic fun destroyInstance() {
+            INSTANCE = null
+        }
     }
 
 }

@@ -8,6 +8,7 @@ import com.github.guuilp.lanchonete.data.Lanche
 import com.github.guuilp.lanchonete.data.source.LanchoneteRepository
 import com.github.guuilp.lanchonete.data.source.remote.LanchoneteRemoteDataSource
 import kotlinx.android.synthetic.main.activity_detalhe_lanche.*
+import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.toast
 
 class DetalheLancheActivity: AppCompatActivity(), DetalheLancheContract.View  {
@@ -42,7 +43,7 @@ class DetalheLancheActivity: AppCompatActivity(), DetalheLancheContract.View  {
     }
 
     override fun showToast(text: String) {
-        toast(text)
+        snackbar(rootCoordinator, text)
     }
 
     override fun onResume() {

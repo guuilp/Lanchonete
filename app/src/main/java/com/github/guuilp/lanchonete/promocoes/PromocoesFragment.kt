@@ -46,8 +46,8 @@ class PromocoesFragment : Fragment(), PromocoesContract.View {
         fun newInstance() = PromocoesFragment()
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         presenter.start()
     }
 }

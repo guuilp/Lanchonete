@@ -43,8 +43,8 @@ class LanchesFragment : Fragment(), LanchesContract.View {
         fun newInstance() = LanchesFragment()
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         presenter.start()
     }
 }
