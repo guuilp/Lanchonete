@@ -6,7 +6,7 @@ import com.github.guuilp.lanchonete.data.Ingrediente
 import com.github.guuilp.lanchonete.data.Lanche
 
 interface MainContract{
-    interface View : BaseView<Presenter>{
+    interface View : BaseView<Presenter> {
         fun getLanchesEIngredientes(listaDeIngredientes: List<Ingrediente>, listaDeLanches: List<Lanche>)
 
         fun showAPIIngredienteError()

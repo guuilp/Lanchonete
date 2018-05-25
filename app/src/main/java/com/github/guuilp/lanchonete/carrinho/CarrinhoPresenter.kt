@@ -1,6 +1,5 @@
 package com.github.guuilp.lanchonete.carrinho
 
-import com.github.guuilp.lanchonete.R
 import com.github.guuilp.lanchonete.data.Ingrediente
 import com.github.guuilp.lanchonete.data.ItemPedido
 import com.github.guuilp.lanchonete.data.Lanche

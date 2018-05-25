@@ -8,11 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.github.guuilp.lanchonete.R
 import com.github.guuilp.lanchonete.data.Lanche
-import com.github.guuilp.lanchonete.detalheLanche.DetalheLancheActivity
 import com.github.guuilp.lanchonete.lanches.LanchesAdapter
 import kotlinx.android.synthetic.main.fragment_carrinho.*
 import org.jetbrains.anko.support.v4.longToast
-import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 
 class CarrinhoFragment : Fragment(), CarrinhoContract.View {

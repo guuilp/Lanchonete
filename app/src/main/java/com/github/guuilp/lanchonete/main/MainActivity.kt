@@ -10,18 +10,21 @@ import com.github.guuilp.lanchonete.carrinho.CarrinhoPresenter
 import com.github.guuilp.lanchonete.data.Ingrediente
 import com.github.guuilp.lanchonete.data.Lanche
 import com.github.guuilp.lanchonete.data.source.LanchoneteRepository
-import com.github.guuilp.lanchonete.data.source.remote.LanchoneteRemoteDataSource
 import com.github.guuilp.lanchonete.lanches.LanchesFragment
 import com.github.guuilp.lanchonete.lanches.LanchesPresenter
 import com.github.guuilp.lanchonete.promocoes.PromocoesFragment
 import com.github.guuilp.lanchonete.promocoes.PromocoesPresenter
+import com.github.guuilp.lanchonete.util.DaggerLanchoneteComponent
 import com.github.guuilp.lanchonete.util.ViewPagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.toast
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), MainContract.View {
 
     override lateinit var presenter: MainContract.Presenter
+
+    @Inject lateinit var repository: LanchoneteRepository
 
     private lateinit var lancheFragment: LanchesFragment
     private lateinit var promocoesFragment: PromocoesFragment
@@ -50,7 +53,9 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         setContentView(R.layout.activity_main)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-        MainPresenter(LanchoneteRepository.getInstance(LanchoneteRemoteDataSource), this)
+        DaggerLanchoneteComponent.create().inject(this)
+
+        MainPresenter(repository, this)
 
         presenter.start()
     }
@@ -60,8 +65,6 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         lancheFragment = LanchesFragment.newInstance()
         promocoesFragment = PromocoesFragment.newInstance()
         carrinhoFragment = CarrinhoFragment.newInstance()
-
-        val repository = LanchoneteRepository.getInstance(LanchoneteRemoteDataSource)
 
         LanchesPresenter(listaDeLanches, listaDeIngredientes, lancheFragment)
         PromocoesPresenter(repository, promocoesFragment)

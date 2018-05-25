@@ -5,6 +5,7 @@ import com.github.guuilp.lanchonete.data.Lanche
 import com.github.guuilp.lanchonete.data.source.LanchoneteDataSource
 import com.github.guuilp.lanchonete.data.source.LanchoneteRepository
 
+
 class MainPresenter(val lanchoneteRepository: LanchoneteRepository,
                     val mainView: MainContract.View) : MainContract.Presenter{
 

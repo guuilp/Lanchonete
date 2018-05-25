@@ -140,31 +140,31 @@ class LanchoneteRepository(val lanchoneteRemoteDataSource: LanchoneteDataSource)
         return listaIngredientesFiltrada
     }
 
-    companion object {
-
-        private var INSTANCE: LanchoneteRepository? = null
-
-        /**
-         * Returns the single instance of this class, creating it if necessary.
-
-         * @param tasksRemoteDataSource the backend data source
-         * *
-         * @param tasksLocalDataSource  the device storage data source
-         * *
-         * @return the [TasksRepository] instance
-         */
-        @JvmStatic fun getInstance(tasksRemoteDataSource: LanchoneteDataSource): LanchoneteRepository {
-            return INSTANCE ?: LanchoneteRepository(tasksRemoteDataSource)
-                    .apply { INSTANCE = this }
-        }
-
-        /**
-         * Used to force [getInstance] to create a new instance
-         * next time it's called.
-         */
-        @JvmStatic fun destroyInstance() {
-            INSTANCE = null
-        }
-    }
+//    companion object {
+//
+//        private var INSTANCE: LanchoneteRepository? = null
+//
+//        /**
+//         * Returns the single instance of this class, creating it if necessary.
+//
+//         * @param tasksRemoteDataSource the backend data source
+//         * *
+//         * @param tasksLocalDataSource  the device storage data source
+//         * *
+//         * @return the [TasksRepository] instance
+//         */
+//        @JvmStatic fun getInstance(tasksRemoteDataSource: LanchoneteDataSource): LanchoneteRepository {
+//            return INSTANCE ?: LanchoneteRepository(tasksRemoteDataSource)
+//                    .apply { INSTANCE = this }
+//        }
+//
+//        /**
+//         * Used to force [getInstance] to create a new instance
+//         * next time it's called.
+//         */
+//        @JvmStatic fun destroyInstance() {
+//            INSTANCE = null
+//        }
+//    }
 
 }

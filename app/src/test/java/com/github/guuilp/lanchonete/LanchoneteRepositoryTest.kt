@@ -21,11 +21,11 @@ class LanchoneteRepositoryTest {
                               Ingrediente(null, 6.0, "Pão com Gergelim", 6))
 
     @Before fun setupTaskRepository(){
-        lanchoneteRepository = LanchoneteRepository.getInstance(LanchoneteRemoteDataSource)
+//        lanchoneteRepository = LanchoneteRepository.getInstance(LanchoneteRemoteDataSource)
     }
 
     @After fun destroyRepositoryInstance(){
-        LanchoneteRepository.destroyInstance()
+//        LanchoneteRepository.destroyInstance()
     }
 
     @Test fun calcularPrecoSemPromocao(){
