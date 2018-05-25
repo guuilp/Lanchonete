@@ -15,6 +15,7 @@ import com.github.guuilp.lanchonete.lanches.LanchesPresenter
 import com.github.guuilp.lanchonete.promocoes.PromocoesFragment
 import com.github.guuilp.lanchonete.promocoes.PromocoesPresenter
 import com.github.guuilp.lanchonete.util.DaggerLanchoneteComponent
+import com.github.guuilp.lanchonete.util.RepositoryModule
 import com.github.guuilp.lanchonete.util.ViewPagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.toast
@@ -22,7 +23,7 @@ import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), MainContract.View {
 
-    override lateinit var presenter: MainContract.Presenter
+    @Inject override lateinit var presenter: MainContract.Presenter
 
     @Inject lateinit var repository: LanchoneteRepository
 
@@ -53,9 +54,10 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         setContentView(R.layout.activity_main)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-        DaggerLanchoneteComponent.create().inject(this)
-
-        MainPresenter(repository, this)
+        DaggerLanchoneteComponent.builder()
+                .repositoryModule(RepositoryModule(this))
+                .build()
+                .inject(this)
 
         presenter.start()
     }

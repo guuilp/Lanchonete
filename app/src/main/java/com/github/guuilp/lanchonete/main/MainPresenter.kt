@@ -9,10 +9,6 @@ import com.github.guuilp.lanchonete.data.source.LanchoneteRepository
 class MainPresenter(val lanchoneteRepository: LanchoneteRepository,
                     val mainView: MainContract.View) : MainContract.Presenter{
 
-    init {
-        mainView.presenter = this
-    }
-
     override fun start() {
         loadIngredientesELanches()
     }
